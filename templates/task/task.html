@@ -1,0 +1,62 @@
+{% extends 'base.html' %}
+
+{% load static %}
+
+{% block header %}  {{block.super}} {% endblock %}
+{% block sidebar %} {{block.super}} {% endblock %}
+
+{% block content %}
+    <div class="content">
+        <div class="task__inner">
+            <h3 class="task__name">{{task_name}}</h3>
+
+            <div class="task__info">
+                <div>Время: <p>{{task_time}}</p> с. </div>
+                <div>Память: <p>{{task_memory}}</p> Мб. </div>
+                <div>Сложность: <p>{{task_difficult}}</p>%.</div>
+            </div>
+
+            <div class="task__text">
+                {{task_text}}
+            </div>
+
+            <div class="task__input">
+                <div class="input__title">Входные данные</div>
+                <div class="input__text">{{task_input_text}}</div>
+            </div>
+
+            <div class="task__output">
+                <div class="output__title">Выодные данные</div>
+                <div class="output__text">{{task_output_text}}</div>
+            </div>
+    
+            {% if is_examples == True %}
+                <table class="task__table">
+                    <thead class="table__head">
+                        <td>№</td>
+                        <td>Пример входных данных</td>
+                        <td>Пример выходных данных</td>
+                    </thead>
+
+                    {% for number, values in task_examples.items %}
+                        <tr class="table__row">
+                            <td>{{number}}</td>
+
+                            {% for value in values %}
+                                <td>{{value}}</td>
+                            {% endfor %}
+
+                        </tr>
+                    {% endfor %}
+
+                </table>
+            {% endif %}
+
+            <div class="task__send">
+                <div class="send__title">Отправить решение</div>
+                <textarea id="source" class="send__text" type="text" rows="5"></textarea>
+                <a href="#" class="btn btn-task">Отправить</a>
+            </div>
+        </div>
+    </div>
+{% endblock %}

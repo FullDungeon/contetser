@@ -1,0 +1,30 @@
+{% extends 'base.html' %}
+
+{% load static %}
+
+{% block header %}  {{block.super}} {% endblock %}
+{% block sidebar %} {{block.super}} {% endblock %}
+
+{% block content %}
+    <!--вход-->
+    <div class="content">
+        <form method="POST" action="{% url 'login' %}">
+            {% csrf_token %}
+            
+            <div class="auth__title">Вход</div>
+    
+            <div class="field">
+                <div class="filed__title">{{ form.username.label_tag }}</div>
+                <div class="field__input">{{ form.username }}</div>
+            </div>
+    
+            <div class="auth__field">
+                <div class="filed__title">{{ form.password.label_tag }}</div>
+                <div class="field__input">{{ form.password }}</div>
+            </div>
+    
+            <button type="submit" class="btn auth__btn">Войти</button>
+        </form>
+
+    </div> <!--content content-main_page-->
+{% endblock  %}

@@ -1,0 +1,43 @@
+{% extends 'base.html' %}
+
+{% load static %}
+
+{% block header %}  {{block.super}} {% endblock %}
+{% block sidebar %} {{block.super}} {% endblock %}
+
+{% block content %} 
+    <!-- каталог задач по разделам -->
+    <div class="content">
+        
+        {% for theme, topicList in contentList.items %}
+            <div class="theme__list">
+                <h3 class="theme">{{theme.text}}</h3>
+
+                {% for topic, taskList in topicList.items %}
+                    <div class="topic__list">
+
+                        <div id="{{topic.btn_id}}"  class="topic">
+                            <div class="topic__inner">
+                                <img class="topic__marker" src="{% static 'catalog/img/arrow-right.png' %}" alt="">
+                                <p class="topic__text" >{{topic.text}}</p>
+                            </div>
+                        </div>
+
+                        <div class="task__list">
+                            {% for task in taskList %}
+                                <a href='{% url 'task-url' task_id=task.task_id %}' class="task">{{task.text}}</a>
+                            {% endfor %}
+                        </div>
+
+                    </div> <!--topic__list-->
+                {% endfor %}
+
+            </div> <!--theme__list-->
+        {% endfor %}
+            
+    </div>
+
+    <!--js-->
+    <script src="{% static 'catalog/js/script.js' %}"></script>
+
+{% endblock %}

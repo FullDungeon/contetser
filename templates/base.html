@@ -1,0 +1,71 @@
+{% load static %}
+
+<link rel="stylesheet" type="text/css" href="{% static 'style/style.css' %}" />
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>{{page_title}}</title>
+
+    <!--fonts-->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@300;400;500;700;800&display=swap" rel="stylesheet">
+
+    <!--JQuery-->
+    <script src="{% static 'js/jquery-3.6.0.js' %}"></script>
+</head>
+<body>
+
+    {% block header %}
+        <header class="header">
+            <div class="header__inner">
+                <p class="header__sitename">{{ site_name }}</p>
+                <h1 class="header__pagename">{{ page_title }}</h1>
+
+                <div class="login__wrapper">
+                    <input type="email" class="input input-login" placeholder="логин">
+                    <input type="password" class="input input-login" placeholder="пароль">
+
+                    <a class="btn btn-login">войти</a>
+                    <a class="btn btn-login">регистрация</a>
+                    <!--элементы login описаны в header.scss-->
+                </div>
+
+                <div class="userdata__wrapper">
+                    <a class="label label-userdata">admin</a>
+                    <a class="btn btn-empty btn-userdata">выйти</a>
+                    <!--элементы userdata описаны в header.scss-->
+                </div>
+            </div>
+        </header> <!--header.scss-->
+    {% endblock %}
+    
+    <!-- панель навигации слева -->
+    {% block sidebar %}
+        <sidebar class="sidebar">
+            <div class="sidebar__inner">
+                <div class="nav__title">Навигация</div>
+                <div class="nav">
+                    <a href='{% url 'index' %}' id="nav-main" class="nav__item">Главная</a>
+                    <a href='#' id="nav-profile" class="nav__item">Профиль</a>
+                    <a href='{% url 'catalog' %}' id="nav-catalog" class="nav__item">Каталог задач</a>
+                    <a href='#' id="nav-settings" class="nav__item">Параметры</a>
+                </div>
+            </div>
+        </sidebar> <!--sidebar.scss-->
+    {% endblock %}
+
+    <!-- CONTENT -->
+    <!-- содержимое страницы -->
+    {% block content %}{% endblock %}
+
+    <!--js-->
+    <!--импорт contester/static/js/scripts.js-->
+    <script src="{% static 'js/script.js' %}"></script>
+
+</body>
+</html>
